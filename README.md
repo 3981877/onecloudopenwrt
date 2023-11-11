@@ -30,13 +30,13 @@ mkdir -p /mnt/usb
 ```
 ntfs-3g /dev/sda1 /mnt/usb -o rw,big_writes
 ```
-上面命令的意思就是把/dev/sdb1第一分区挂载到/mnt/usb目录
+上面命令的意思就是把/dev/sda1第一分区挂载到/mnt/usb目录
 
 要在启动时(插入硬盘)自动挂载分区，请编辑/etc/rc.local:
 ```
 sleep 1
 
-ntfs-3g /dev/sdb1 /mnt/usb -o rw,lazytime,noatime,big_writes
+ntfs-3g /dev/sda1 /mnt/usb -o rw,lazytime,noatime,big_writes
 
 exit 0
 ```
@@ -44,7 +44,7 @@ exit 0
 
 执行下图命令
 ```
-umount /dev/sdb1
+umount /dev/sda1
 ```
 为了让OpenWrt能够自动挂载它:
 ```
