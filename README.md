@@ -26,9 +26,9 @@ resize2fs /dev/mmcblk1p2
 ```
 mkdir -p /mnt/usb
 ```
-要手动挂载分区:/dev/sdb1代表一整块硬盘，/dev/sd1代表第一分区
+要手动挂载分区:/dev/sda1代表一整块硬盘，/dev/sd1代表第一分区
 ```
-ntfs-3g /dev/sdb1 /mnt/usb -o rw,big_writes
+ntfs-3g /dev/sda1 /mnt/usb -o rw,big_writes
 ```
 上面命令的意思就是把/dev/sdb1第一分区挂载到/mnt/usb目录
 
