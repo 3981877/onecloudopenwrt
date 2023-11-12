@@ -111,6 +111,84 @@ NOW，每当你插入一个NTFS USB磁盘，它应该会自动安装。
 ![7](https://github.com/3981877/onecloudopenwrt/assets/60610978/96034edf-992e-4a91-bfef-a133bbdf5c7d)
 
 
+## openwrt samba配置 新增用户
+
+背景：想使samba经过用户验证后才能访问，在根据网上的教程配置samba后，win11连接时一直拒绝访问，后得知需要添加对应系统用户；
+
+环境：x86，openwrt版本：BleachWrt；samba4
+
+- 正确流程
+
+### 1.添加系统用户、设置密码
+``` 
+vim /etc/passwd
+```
+
+然后光标移到最后插入一行：（vim 按 i 插入）
+
+用户名：*：用户ID：用户组ID：三个逗号：/home/用户名：/bin/bash
+
+示例：user123:*:1000:1000:,,,:/home/user123:/bin/bash
+
+然后编辑group文件，命令:
+```
+vim /etc/group
+```
+同样最后一行插入：用户组名：*：用户组ID：
+
+示例：user123:*:1000:
+
+然后给刚创建的账户设置密码，命令：passwd 用户名，根据提示输入两次密码
+```
+passwd user123
+```
+### 2.samba 添加用户、设置密码
+
+刚创建的用户设置smb密码，命令：smbpasswd -a 用户名
+```
+smbpasswd -a user123
+```
+同样输入两次新密码，然后重启smb服务，命令：
+```
+service samba restart
+
+#我的openwrt用的是samba4，所以执行下面的
+service samba4 restart
+```
+
+### 3.samba配置
+openwrt后台-网络共享-编辑配置模板
+
+注释掉invalid users = root
+```
+## set invalid users
+## invalid users = root
+```
+openwrt后台-网络共享-基本设置-添加共享目录
+
+名称随意输入，这里我以“test”为例（该名称后面会用到）
+
+路径：/root/test
+
+可浏览-勾选
+
+允许用户：输入前面配置的用户名“user123”
+
+保存&应用
+
+重启samba，后台命令service samba4 restart,或者openwrt后台-系统-启动项-找到samba-重启
+
+### 4.win连接，映射网络驱动器
+
+右击文件窗口左侧‘网络’，映射网络驱动器
+```
+1 \\openwrt ip地址\共享名称
+2 根据上面的步骤得出此处应该输入
+3 \\192.168.100.1\test
+```
+根据提示添加凭证，输入samba用户名和密码即可。
+
+注：可能需要启用Windows功能：SMB 1.0/CIFS
 
 
 ## 公共国内外DNS
