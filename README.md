@@ -112,18 +112,23 @@ NOW，每当你插入一个NTFS USB磁盘，它应该会自动安装。
 
 
 # OpenWrt设置samba密码
-- 一. 编辑Luci模板
+### 一. 编辑Luci模板
+```
 注释掉invalid users = root行
+## invalid users = root
+```
 ![1](https://github.com/3981877/onecloudopenwrt/assets/60610978/f88fdf80-052b-4383-be80-2fce4d810639)
 
-- 二. 添加用户
+### 二. 添加用户,设置密码输入两次密码
 ```
 smbpasswd -a root #然后输入需要设置的密码
 ```
-- 三. 在Luci中勾选用户
+### 三. 在Luci中勾选用户
+
 ![2](https://github.com/3981877/onecloudopenwrt/assets/60610978/730b2dd7-8e4d-4421-9d48-2880e7859843)
 
-重启samba
+### 四重启samba
+
 ```
 service samba4 restart
 ```
