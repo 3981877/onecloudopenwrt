@@ -123,7 +123,10 @@ smbpasswd -a root #然后输入需要设置的密码
 - 三. 在Luci中勾选用户
 ![2](https://github.com/3981877/onecloudopenwrt/assets/60610978/730b2dd7-8e4d-4421-9d48-2880e7859843)
 
-
+重启samba
+```
+service samba4 restart
+```
 ## 公共国内外DNS
 
 UDP传输时间短，加密统一选择：https
