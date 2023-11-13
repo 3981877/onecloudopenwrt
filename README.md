@@ -127,7 +127,7 @@ smbpasswd -a root #然后输入需要设置的密码
 
 ![2](https://github.com/3981877/onecloudopenwrt/assets/60610978/730b2dd7-8e4d-4421-9d48-2880e7859843)
 
-### 四重启samba
+### 四.重启samba
 
 ```
 service samba4 restart
