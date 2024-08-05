@@ -132,3 +132,14 @@ smbpasswd -a root #然后输入需要设置的密码
 ```
 service samba4 restart
 ```
+### 关于opkg update报错无法下载的解决方法
+
+进入/etc/resolv.conf 发现里面nameserver是100.100.100.100
+```
+vim /etc/resolv.conf
+```
+改成
+
+search lan
+
+nameserver 8.8.8.8
