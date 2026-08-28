@@ -143,3 +143,17 @@ vim /etc/resolv.conf
 search lan
 
 nameserver 8.8.8.8
+
+## 换源
+```
+/etc/opkg/distfeeds.conf
+```
+
+```
+src/gz openwrt_core https://dl.openwrt.ai/packages-24.10/
+src/gz openwrt_base https://dl.openwrt.ai/packages-24.10/arm_cortex-a5_vfpv4/base/
+src/gz openwrt_packages https://dl.openwrt.ai/packages-24.10/arm_cortex-a5_vfpv4/packages/
+src/gz openwrt_luci https://dl.openwrt.ai/packages-24.10/arm_cortex-a5_vfpv4/luci/
+src/gz openwrt_routing https://dl.openwrt.ai/packages-24.10/arm_cortex-a5_vfpv4/routing/
+src/gz openwrt_kiddin9 https://dl.openwrt.ai/packages-24.10/arm_cortex-a5_vfpv4/kiddin9/
+```
